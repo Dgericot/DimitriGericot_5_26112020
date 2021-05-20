@@ -3,14 +3,14 @@
 <html lang="fr">
     <head>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>     
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <link href="style.css" rel="stylesheet" />     
     <!-- Bootstrap CSS -->
         <link rel="stylesheet"
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
         crossorigin="anonymous"/>
         
-        <link href="style.css" rel="stylesheet" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="./css/all.css" rel="stylesheet" />
         
@@ -21,11 +21,11 @@
     <body>
     <header>
     <!-- bloc-0 -->
-    <div class="bg-info">
-    <div class="container">
+    <div class="bg-dark">
+    <div class="container p-3">
         <div class="row">
         <nav class="col navbar navbar-expand-lg navbar-dark">
-            <a class="navbar-brand" href="index.html">Orinoco</a>
+            <a class="navbar-brand font-weight-bold" href="index.html">Orinoco</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
                 <span class="navbar-toggler-icon"></span>
              </button>
@@ -58,16 +58,28 @@
     <!-- bloc-1-presentation produits -->
     <main>
         <div class="container">
-      <div class="row">
+      <div class="row mb-4">
         <div class="col">
+            <div class="jumbotron text-lg-center shadow">
+                <h1 class="mb-4 font-weight-light"> Découvrez nos caméras vintage d'exception!</h1>
+            
             <div id="carouselControls" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                   <div class="carousel-item active">
-                    <img src="img/vcam_1.jpg" class="d-block w-100" alt="Satellite">
+                    <img src="img/vcam_1.jpg" class="d-block w-100" alt="Caméra Zurss 50S">
                   </div>
                   <div class="carousel-item">
-                    <img src="img/vcam_2.jpg" class="d-block w-100" alt="Spacewalking astronaut">
+                    <img src="img/vcam_2.jpg" class="d-block w-100" alt="Caméra Hirsch 400DTS">
                   </div>
+                  <div class="carousel-item">
+                    <img src="img/vcam_3.jpg" class="d-block w-100" alt="Caméra Franck JS 105">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="img/vcam_4.jpg" class="d-block w-100" alt="Caméra Kuros TTS">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="img/vcam_5.jpg" class="d-block w-100" alt="Caméra Katatone">
+                  </div>  
                 </div>
                 <a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -84,48 +96,59 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-12 col-lg-4">
-            <div class="card">
-                <img src="img/vcam_1.jpg" alt="camera1" class="card-img-top">
+        <div class="col-12 col-lg-4 text-center">
+            <div class="card mb-4 mb-lg-4 shadow">
+                <img src="img/vcam_1.jpg" alt="Caméra Zurss 50S" class="card-img-top">
                 <div class="card-body">
-                  <h5 class="card-title">Caméra 1</h5>
-                  <p class="card-text">bla bla</p>
+                  <h5 class="card-title ">Caméra Zurss 50S</h5>
+                  <p class="card-text"><strong>Description:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                  <p class="card-text"><strong>Prix:</strong> 49 900</p>
+                  <button type="button" class="btn btn-info stretched-link btn-info">Obtenir plus d'information</button>
+                  <a class="btn btn-info stretched-link" href="#" role="button"></a>
                 </div>
               </div>
         </div>
-        <div class="col-12 col-lg-4">
-            <div class="card">
-                <img src="img/vcam_2.jpg" alt="camera2" class="card-img-top">
+        <div class="col-12 col-lg-4 text-center ">
+            <div class="card mb-4 mb-lg-4 shadow">
+                <img src="img/vcam_2.jpg" alt="Caméra Hirsch 400DTS" class="card-img-top">
                 <div class="card-body">
-                  <h5 class="card-title">Caméra 2</h5>
-                  <p class="card-text">bla bla</p>
+                  <h5 class="card-title">Caméra Hirsch 400DTS</h5>
+                  <p class="card-text"><strong>Description:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                  <p class="card-text"><strong>Prix:</strong> 309 900</p>
+                  <a href="#" class="btn btn-info stretched-link">Obtenir plus d'information</a>
                 </div>
               </div>
         </div>
-        <div class="col-12 col-lg-4">
-            <div class="card">
-                <img src="img/vcam_3.jpg" alt="camera3" class="card-img-top">
+        <div class="col-12 col-lg-4 text-center">
+            <div class="card mb-4 mb-lg-4 shadow">
+                <img src="img/vcam_3.jpg" alt="Caméra Franck JS 105" class="card-img-top">
                 <div class="card-body">
-                  <h5 class="card-title">Caméra 3</h5>
-                  <p class="card-text">bla bla</p>
+                  <h5 class="card-title">Caméra Franck JS 105</h5>
+                  <p class="card-text"><strong>Description:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                  <p class="card-text"><strong>Prix:</strong> 209 900</p>
+                  <a href="#" class="btn btn-info stretched-link">Obtenir plus d'information</a>
                 </div>
               </div>
         </div>
-        <div class="col-12 col-lg-4">
-            <div class="card">
-                <img src="img/vcam_4.jpg" alt="camera4" class="card-img-top">
+        <div class="col-12 col-lg-4 text-center">
+            <div class="card mb-4 mb-lg-4 shadow">
+                <img src="img/vcam_4.jpg" alt="Caméra Kuros TTS" class="card-img-top">
                 <div class="card-body">
-                  <h5 class="card-title">Caméra 4</h5>
-                  <p class="card-text">bla bla</p>
+                  <h5 class="card-title">Caméra Kuros TTS</h5>
+                  <p class="card-text"><strong>Description:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                  <p class="card-text"><strong>Prix:</strong> 159 900</p>
+                  <a href="#" class="btn btn-info stretched-link">Obtenir plus d'information</a>
                 </div>
               </div>
         </div>
-        <div class="col-12 col-lg-4">
-            <div class="card">
-                <img src="img/vcam_5.jpg" alt="camera5" class="card-img-top">
+        <div class="col-12 col-lg-4 text-center">
+            <div class="card mb-4 mb-lg-4 shadow">
+                <img src="img/vcam_5.jpg" alt="Caméra Katatone" class="card-img-top">
                 <div class="card-body">
-                  <h5 class="card-title">Caméra 5</h5>
-                  <p class="card-text">bla bla</p>
+                  <h5 class="card-title">Caméra Katatone</h5>
+                  <p class="card-text"><strong>Description:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                  <p class="card-text"><strong>Prix:</strong> 59 900</p>
+                  <a href="#" class="btn btn-info stretched-link">Obtenir plus d'information</a>
                 </div>
               </div>
         </div>
@@ -140,8 +163,8 @@
         </div>
       </div>
     </div>
-    <div class="bg-info">
-        <div class="container">
+    <div class="bg-dark">
+        <div class="container p-3">
           <div class="row">
             <div class="col">
                 <nav class="navbar-footer">

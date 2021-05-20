@@ -1,0 +1,12 @@
+.navbar-footer a {
+    color: white;
+    &:hover {
+        text-decoration: none;
+        color: white;
+    }
+}
+
+.btn-info {
+    display: flex;
+    justify-content: center;
+}
