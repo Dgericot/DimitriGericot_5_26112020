@@ -6,7 +6,13 @@
     }
 }
 
-.btn-info {
-    display: flex;
-    justify-content: center;
+.site-navigation {
+    right: 20px;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%)
+}
+
+.decouvrir {
+    font-size: 40px;
 }

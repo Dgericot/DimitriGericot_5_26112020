@@ -1,15 +1,19 @@
 {
-  "name": "Orinoco-Frontend",
+  "name": "orinoco-frontend",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "sass": "sass --watch ./main.scss:./style.css"
+    "start": "parcel index.html"
   },
   "keywords": [],
   "author": "Dimitri",
   "license": "ISC",
   "dependencies": {
     "bootstrap": "^5.0.1"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5",
+    "sass": "^1.32.13"
   }
 }
