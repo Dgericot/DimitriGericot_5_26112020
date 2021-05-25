@@ -4,19 +4,21 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-        <link href="./main.scss" rel="stylesheet" />     
+        
+        <link href="./main.scss" rel="stylesheet" />
+             
     <!-- Bootstrap CSS -->
         <link rel="stylesheet"
-        href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-        crossorigin="anonymous"/>
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous"/>
         
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="./css/all.css" rel="stylesheet" />
         
         <title>Orinoco - Vente en ligne de caméras vintage </title>
         <meta name="description"
-        content="Orinoco est un site de vente en ligne proposant des caméras vintage"/>
+          content="Orinoco est un site de vente en ligne proposant des caméras vintage"/>
     </head>
     <body>
     <header>
@@ -25,26 +27,26 @@
     <div class="container p-3">
         <div class="row">
         <nav class="col navbar navbar-expand-lg navbar-dark">
-            <a class="navbar-brand font-weight-bold logo" href="index.html"><h1>Orinoco</h1></a>
+            <a class="navbar-brand font-weight-bold logo"  href="index.html"><h1><i class="fas fa-camera-retro"></i>  Orinoco</h1></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
                 <span class="navbar-toggler-icon"></span>
              </button>
              <div id="navbarContent" class="collapse navbar-collapse">
             <ul class="site-navigation navbar-nav">
                <li class="nav-item active">
-                  <a class="nav-link" href="index.html">Accueil</a>
+                  <a class="nav-link" href="index.html"> <i class="fas fa-home"></i> Accueil</a>
                </li>
                <li class="nav-item">
-                <a class="nav-link" href="#">Nos produits</a>
+                <a class="nav-link" href="#"><i class="fas fa-camera"></i> Nos produits</a>
                </li>
                <li class="nav-item">
-                <a class="nav-link" href="#">Mon compte</a>
+                <a class="nav-link" href="#"> <i class="far fa-user"></i> Mon compte</a>
                </li>
                <li class="nav-item">
-                <a class="nav-link" href="#">Panier</a>
+                <a class="nav-link" href="#"><i class="fas fa-shopping-basket"></i> Panier</a>
                </li>
                <li class="nav-item">
-                <a class="nav-link" href="#">Nous contacter</a>
+                <a class="nav-link" href="#"> <i class="far fa-envelope"></i> Nous contacter</a>
                </li>
             </ul>
         </div>
@@ -57,8 +59,8 @@
 
     <!-- bloc-1-presentation produits -->
     <main>
-        <div class="container">
-      <div class="row mb-4">
+        <div class="container container-1">
+      <!-- <div class="row mb-4">
         <div class="col">
             <div class="jumbotron text-lg-center shadow">
                 <h2 class="mb-4 font-weight-light decouvrir">Découvrez nos caméras vintage d'exception!</h2>
@@ -89,13 +91,14 @@
                   <span class="carousel-control-next-icon" aria-hidden="true"></span>
                   <span class="sr-only">Next</span>
                 </a>          
-            <!--<div class="jumbotron text-lg-center">
-                <h1>Découvrez nos caméras d'exception!</h1>-->
+            
             </div>
             </div>
         </div>
-      </div>
-      <div class="row rounded">
+      </div>-->
+        </div>
+        <div class="container container-2">
+     <!-- <div class="row">
         <div class="col-12 col-lg-6 text-center">
             <div class="card mb-4 mb-lg-4 shadow">
                 <img src="img/vcam_1.jpg" alt="Caméra Zurss 50S" class="card-img-top">
@@ -140,7 +143,7 @@
                 </div>
               </div>
         </div> 
-        <div class="col-12 col-lg-12 text-center centrage">
+        <div class="col-12 col-lg-12 text-center">
             <div class="card mb-4 mb-lg-4 shadow">
                 <img src="img/vcam_5.jpg" alt="Caméra Katatone" class="card-img-top">
                 <div class="card-body">
@@ -150,13 +153,14 @@
                   <a href="#" class="btn btn-info stretched-link rounded-pill">Obtenir plus d'information</a>
                 </div>
               </div>
-        </div>
-      </div>
+        </div> 
+      </div> -->
+    </div>
     </main>
       <!-- bloc-1-presentation END -->
 
       <!-- Footer -->
-      <footer>
+    <footer>
       <div class="row">
         <div class="col">
         </div>
@@ -167,12 +171,20 @@
           <div class="row">
             <div class="col">
                 <nav class="navbar-footer">
-                <ul class="list-inline text-center">
+                  <ul class="list-inline text-center">
                     <li class="list-inline-item"><a href="#">Devenir partenaire</a></li>
                     <li class="list-inline-item"><a href="#">Mentions légales</a></li>
                     <li class="list-inline-item"><a href="mailto:contact@orinoco.fr">Contact</a></li>
-                </ul>
-            </nav>
+                  </ul>
+                    <div class="text-center">
+                    <a class="social" aria-label="Facebook" href="#">
+                      <span class="footer-text icon-md"><i class="fab fa-facebook-square"></i> Facebook</span></a>
+                    </div>
+                    <div class="text-center">
+                    <a class="social" aria-label="Instagram" href="#">
+                      <span class="footer-text icon-md"><i class="fab fa-instagram"></i> Instagram</span></a>
+                  </div>
+                </nav>
               </div>
           </div>
         </div>
@@ -192,5 +204,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
       integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
       crossorigin="anonymous"></script>
+
+    <script src="./js/index.js"></script>
+    <script src="./js/fetch.js"></script>
+
   </body>
 </html>
