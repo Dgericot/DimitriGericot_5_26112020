@@ -18,20 +18,22 @@ products.forEach((product) => {
             <div class="jumbotron text-lg-center shadow">
                 <h2 class="mb-4 font-weight-light decouvrir">Découvrez nos caméras vintage d'exception!</h2>
             
-                    <div id="carouselControls" class="carousel slide" data-ride="carousel">
+                <div id="carouselControls" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner rounded-circle">
-                    <div class="carousel-item active">
+                  <div class="carousel-item active">
                     <img src="${product.imageUrl}" class="d-block w-100" alt="Caméra Zurss 50S">
-                    </div>
                   </div>
-                  <a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  
+                </div>
+                <a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                   <span class="sr-only">Previous</span>
                 </a>
                 <a class="carousel-control-next" href="#carouselControls" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                  </div>
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>          
+                </div>
             </div>
         </div>
       </div>
@@ -48,9 +50,10 @@ const affichage =[]
 
 products.forEach((product) => {
     const render = `
+    <div class="row">
     <div class="col-12 col-lg-6 text-center">
             <div class="card mb-4 mb-lg-4 shadow">
-                <img src="${product.imageUrl}"> 
+                <img src="${product.imageUrl}" class="rounded"> 
                 <div class="card-body">
                   <h5 class="card-title">${product.name}</h5>
                   <p class="card-text">${product.description}</p>
@@ -58,6 +61,7 @@ products.forEach((product) => {
                   <a href="#" class="btn btn-info stretched-link rounded-pill">Obtenir plus d'information</a>
                 </div>
               </div>
+        </div>
         </div>
         `;
         affichage.push(render);
