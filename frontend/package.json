@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "parcel index.html"
+    "start": "parcel index.html ./*.html"
   },
   "keywords": [],
   "author": "Dimitri",
@@ -15,5 +15,12 @@
   "devDependencies": {
     "parcel-bundler": "^1.12.5",
     "sass": "^1.32.13"
-  }
+  },
+  "browserslist": [
+    "last 2 and_chr versions",
+    "last 2 chrome versions",
+    "last 2 opera versions",
+    "last 2 ios_saf versions",
+    "last 2 safari versions"
+  ]
 }
