@@ -1,4 +1,4 @@
-import {getCameras, getCameraById} from './fetch'
+import {getCameras} from './fetch'
 
 getCameras().then((products) => {
     displayCarousel(products);
