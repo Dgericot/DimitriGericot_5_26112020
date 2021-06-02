@@ -12,7 +12,7 @@ getCameraById(productId).then((product) => {
 
 let params = new URLSearchParams (document.location.search.productId);
 let productId = params.get ("productId");
-getCameraById(productId).then((product) => { 
+getCameraById(productId).then((product) => {
     displayProductInPage(product)
 
 })
@@ -44,7 +44,12 @@ function displayProductInPage(product) {
         <p class="card-text">Types de lentilles </p>
         <p class="card-text"><strong>35mm 1.4</strong> <button type="button" class="btn btn-success btn-sm mb-2">Choisir</button>  <button type="button" class="btn btn-danger btn-sm mb-2">Retirer</button></p></p>
         <p class="card-text"><strong>50mm 1.6</strong> <button type="button" class="btn btn-success btn-sm mb-2">Choisir</button>  <button type="button" class="btn btn-danger btn-sm mb-2">Retirer</button></p>
-        <a href="#" class="btn btn-info stretched-link rounded-pill text-center">Ajouter au panier</a>
+        
+        const $AddToCartButton = document.createElement("button");
+        $AddToCartButton.className = "btn btn-info stretched-link rounded-pill text-center";
+        $AddToCartButton.setAttribute("aria-label", "Bouton ajouter au panier");
+        $AddToCartButton.setAttribute("type", "submit");
+        $AddToCartButton.innerText = "Ajouter au panier";
         </div>
         </div>
         </div>
@@ -88,6 +93,26 @@ function addToCart(product) {
 localStorage.setItem('cart', cart)
 }
 
-button.addEventListener('click', () => {
+$AddToCartButton.addEventListener('click', () => {
     myCart.addToCart(product)
 })
+
+/*
+**************************************************
+
+//Ajouter un article dans la page panier
+$AddToCartButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    let data = JSON.parse(localStorage.getItem("cart"));
+
+
+ //Stocker en local, ajout article
+ localStorage.setItem("cart", JSON.stringify(data));
+
+ //Demande de redirection de page
+ if (confirm("Votre article a été ajouté dans votre panier ! \n\nSouhaitez-vous voir votre panier ?")) {
+     window.location.href = "panier.html";
+ } else if (confirm("Voulez-vous retourner sur la page des produits ?")) {
+     window.location.href = "index.html";
+ }
+});*/
