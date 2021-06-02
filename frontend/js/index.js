@@ -57,7 +57,7 @@ function displayProductsCards(products) {
         <h5 class="card-title">${product.name}</h5>
         <p class="card-text">${product.description}</p>
         <p class="card-text">${product.price/100} €</p>
-        <a href="/produits.html?id=${product._id}" class="btn btn-info stretched-link rounded-pill">Obtenir plus d'information</a>
+        <a href="/produits.html?product_id=${product._id}" class="btn btn-info stretched-link rounded-pill">Obtenir plus d'information</a>
         </div>
         </div>
         </div>
@@ -69,7 +69,7 @@ function displayProductsCards(products) {
 /*
 function formatPricing(price) {
     let result []
-        ${product.price/100};
+        ${product.price/100} €;
     }
     
     return''
