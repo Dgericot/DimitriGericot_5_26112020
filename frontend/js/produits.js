@@ -16,6 +16,10 @@ let productId = params.get("product_id");
 getCameraById(productId).then((product) => {
     displayProductInPage(product)
 
+   const $addToCartButton = document.querySelector('.add-to-cart');
+    $addToCartButton.addEventListener('click',() => {
+    addToCart(product)
+    })
 })
 
 function displayProductInPage(product) {
@@ -44,8 +48,8 @@ function displayProductInPage(product) {
         
         <div>
         <button 
-            type="submit"
-            class="btn btn-info stretched-link rounded-pill text-center"
+            type="button"
+            class="btn btn-info stretched-link rounded-pill text-center add-to-cart"
             aria label="Ajouter au panier">
             Ajouter au panier
         </button>
@@ -62,7 +66,7 @@ function displayProductInPage(product) {
     }
     
 
-    const cart = {   
+    /*const cart = {   
         products: [
         {_id: "5be1ed3f1c9d44000030b061", name: "Caméra Zurss 50S", price:"49 900", lenses: ["35mm 1.4", "50mm 1.6"] },
         {_id: "5be1ef211c9d44000030b062", name:"Caméra Hirsch 400DTS",  price:"309 900", lenses: ["50mm 1.8", "60mm 2.8", "24-60mm 2.8/4.5"] },
@@ -71,9 +75,8 @@ function displayProductInPage(product) {
         {_id: "5be9c4c71c9d440000a730e9", name:"Caméra Katatone",  price:"59 900", lenses: ["50mm 1.4", "35mm 1.8", "28-200mm 2.8/4.5"] },
     ],
     price: "49 900 + 309 900 + 209 900 + 159 900 + 59 900",
-}
+}*/
 
-const myCart = new Cart()
 
 function addToCart(product) {
     const storedCart = localStorage.getItem('cart')
@@ -83,7 +86,6 @@ function addToCart(product) {
         cart = {
             products: [product],
             price: product.price,
-            lenses: product.lenses
         }
 
     } else {
@@ -91,12 +93,12 @@ function addToCart(product) {
         cart.products.push(product)
         cart.price += product.price
     }
-localStorage.setItem('cart', cart)
+localStorage.setItem('cart', JSON.stringify(cart))
 }
 
-$AddToCartButton.addEventListener('click', () => {
+/*$AddToCartButton.addEventListener('click', () => {
     myCart.addToCart(product)
-})
+})*/
 
 /*
 **************************************************
