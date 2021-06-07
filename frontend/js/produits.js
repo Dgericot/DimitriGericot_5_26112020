@@ -10,22 +10,19 @@ getCameraById(productId).then((product) => {
 
 })*/
 
-let params = new URLSearchParams (document.location.search.productId);
-let productId = params.get ("productId");
+let params = new URLSearchParams (document.location.search);
+let productId = params.get("product_id");
+
 getCameraById(productId).then((product) => {
     displayProductInPage(product)
 
 })
 
-
-
 function displayProductInPage(product) {
-    const main = document.querySelector('.container');
-    const affichage =[]
+    const main = document.querySelector('main .container');
     
-    product.forEach((product) => {
         const render = `
-        <div class="col-12 col-lg-6 text-center">
+        <div class="col-12 col-lg-8 text-center">
         <div class="card mb-4 mb-lg-4 shadow">
         <img src="${product.imageUrl}" class="rounded"> 
         
@@ -45,21 +42,25 @@ function displayProductInPage(product) {
         <p class="card-text"><strong>35mm 1.4</strong> <button type="button" class="btn btn-success btn-sm mb-2">Choisir</button>  <button type="button" class="btn btn-danger btn-sm mb-2">Retirer</button></p></p>
         <p class="card-text"><strong>50mm 1.6</strong> <button type="button" class="btn btn-success btn-sm mb-2">Choisir</button>  <button type="button" class="btn btn-danger btn-sm mb-2">Retirer</button></p>
         
-        const $AddToCartButton = document.createElement("button");
-        $AddToCartButton.className = "btn btn-info stretched-link rounded-pill text-center";
-        $AddToCartButton.setAttribute("aria-label", "Bouton ajouter au panier");
-        $AddToCartButton.setAttribute("type", "submit");
-        $AddToCartButton.innerText = "Ajouter au panier";
+        <div>
+        <button 
+            type="submit"
+            class="btn btn-info stretched-link rounded-pill text-center"
+            aria label="Ajouter au panier">
+            Ajouter au panier
+        </button>
+        </div>
+
         </div>
         </div>
         </div>
     `;
-            affichage.push(render);
-    })
-    main.innerHTML =`<div class="row">${affichage.join('')}</div>`;  
+            
+    
+    main.innerHTML =`<div class="row">${render}</div>`;  
 
     }
-
+    
 
     const cart = {   
         products: [

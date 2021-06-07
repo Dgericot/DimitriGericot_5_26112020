@@ -11,11 +11,11 @@ export const getCameras = async function () {
     }   
    }
 
-   getCameras()
+ 
 
 
 
-   export const getCameraById = async function () {
+   export const getCameraById = async function (id) {
     try {
         let response = await fetch('http://localhost:3000/api/cameras/' +id)
         if (response.ok) {
@@ -28,7 +28,7 @@ export const getCameras = async function () {
     }   
    }   
 
-   getCameraById()
+  
 
    /*
 
