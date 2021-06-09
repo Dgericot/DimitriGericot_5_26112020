@@ -1,15 +1,6 @@
 import {getCameraById} from './fetch'
 
 
-/*const urlParam = new URLSearchParams(window.location.search);
-Let Id = urlParam.get('product_id');*/
-
-/*const productId = urlParam.get('product_id') 
-getCameraById(productId).then((product) => { 
-    displayProductInPage(product)
-
-})*/
-
 let params = new URLSearchParams (document.location.search);
 let productId = params.get("product_id");
 
@@ -17,8 +8,26 @@ getCameraById(productId).then((product) => {
     displayProductInPage(product)
 
    const $addToCartButton = document.querySelector('.add-to-cart');
+
+   const $selectedLenses = document.querySelector('.choseButton');
+
+   const selectedProduct = {
+    ...product,
+    [product.lenses]:$selectedLenses,
+
+} 
+   $selectedLenses.addEventListener('click',(e) => { 
+        $selectedProduct.lenses.push(e.target.innerText)
+    })
+
     $addToCartButton.addEventListener('click',() => {
-    addToCart(product)
+    addToCart(selectedProduct)
+    if (confirm("Votre article a été ajouté dans votre panier ! \n\nSouhaitez-vous voir votre panier ?")) {
+        window.location.href = "panier.html";
+    } else if (confirm("Voulez-vous retourner sur la page des produits ?")) {
+        window.location.href = "index.html";
+    }
+    
     })
 })
 
@@ -43,8 +52,8 @@ function displayProductInPage(product) {
         <div class="card-body">
         <h5 class="card-title text-center">Choix des options</h5>
         <p class="card-text">Types de lentilles </p>
-        <p class="card-text"><strong>35mm 1.4</strong> <button type="button" class="btn btn-success btn-sm mb-2">Choisir</button>  <button type="button" class="btn btn-danger btn-sm mb-2">Retirer</button></p></p>
-        <p class="card-text"><strong>50mm 1.6</strong> <button type="button" class="btn btn-success btn-sm mb-2">Choisir</button>  <button type="button" class="btn btn-danger btn-sm mb-2">Retirer</button></p>
+        <select class="card-text">${product.lenses}</select> <button type="button" class="btn btn-success btn-sm mb-2 choseButton">Choisir</button>  <button type="button" class="btn btn-danger btn-sm mb-2">Retirer</button></p></p>
+        <p class="card-text">${product.lenses} <button type="button" class="btn btn-success btn-sm mb-2 choseButton">Choisir</button>  <button type="button" class="btn btn-danger btn-sm mb-2">Retirer</button></p>
         
         <div>
         <button 
@@ -66,7 +75,33 @@ function displayProductInPage(product) {
     }
     
 
-    /*const cart = {   
+    /*
+
+    alert("Article ajouté à votre panier. Souhaitez-vous aller à la page de commande?")
+    
+    let params = new URLSearchParams (document.location.search);
+let productId = params.get("product_id");
+
+getCameraById(productId).then((product) => {
+    displayProductInPage(product)
+
+   const $addToCartButton = document.querySelector('.add-to-cart');
+    $addToCartButton.addEventListener('click',() => {
+    addToCart(product)
+    })
+})
+
+<div class="col-12 col-lg-4">
+        <div class="card mb-4 mb-lg-4 shadow text-center">
+        <div class="card-body">
+        <h5 class="card-title text-center">Choix des options</h5>
+        <p class="card-text">Types de lentilles </p>
+        <p class="card-text">${product.lenses}<strong>35mm 1.4</strong> <button type="button" class="btn btn-success btn-sm mb-2 choseButton">Choisir</button>  <button type="button" class="btn btn-danger btn-sm mb-2">Retirer</button></p></p>
+        <p class="card-text">${product.lenses}<strong>50mm 1.6</strong> <button type="button" class="btn btn-success btn-sm mb-2 choseButton">Choisir</button>  <button type="button" class="btn btn-danger btn-sm mb-2">Retirer</button></p>
+        
+        <div>
+
+    const cart = {   
         products: [
         {_id: "5be1ed3f1c9d44000030b061", name: "Caméra Zurss 50S", price:"49 900", lenses: ["35mm 1.4", "50mm 1.6"] },
         {_id: "5be1ef211c9d44000030b062", name:"Caméra Hirsch 400DTS",  price:"309 900", lenses: ["50mm 1.8", "60mm 2.8", "24-60mm 2.8/4.5"] },
