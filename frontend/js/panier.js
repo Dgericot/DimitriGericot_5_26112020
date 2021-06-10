@@ -1,12 +1,13 @@
 //Récupération des produits via le localStorage
-/*const $storedCart = JSON.parse(localStorage.getItem("cart"));
+const $storedCart = JSON.parse(localStorage.getItem("cart"));
 
+let cart = ["product.name", "product.price", "product.quatity", "product.totalPrice"];
 
-storedCart(cart).then ((product) => {
+$storedCart(cart).then ((product) => {
     displayOrder(product);
     displayForm(order);
 
-} )
+})
 
 function displayOrder (product) {
     const main = document.querySelector('main .container');
@@ -20,9 +21,9 @@ function displayOrder (product) {
      <tr>
      <th class="text-md-right">Produit${product.name}</th>
     <th class="d-none d-md-table-cell"></th>
-    <th class="d-none d-md-table-cell">Prix unitaire</th>
-    <th>Quantité</th>
-    <th>Prix total</th>
+    <th class="d-none d-md-table-cell">Prix unitaire${product.price}</th>
+    <th>Quantité${product.quantity}</th>
+    <th>Prix total${product.totalPrice}</th>
     </tr>
     </thead>
     </table>
@@ -48,13 +49,14 @@ function displayOrder (product) {
         `
         main.innerHTML =`<div class="row">${render}</div>`; 
 
+        }
+
     
 function displayForm(order) {
     const section = document.querySelector('section .container');
 
     const affichage = `
 
-    <div class="container mt-5">
     <div class="col">
     <form class="row" id="contact-form">
     <div class="col-12 col-md-6 text-primary font-weight-bold was-validated">
@@ -108,22 +110,48 @@ function displayForm(order) {
     <p id="error" class="h5 text-danger"></p>
     <input type="submit" id="order-button" class="btn btn-success text-white font-weight-bold ml-3 my-5 px-3" value="Valider la commande">
     </form> 
-    </div>
+    
     </div>
     
     `;
 
     section.innerHTML ='${affichage}'; 
 
-
 }
 
+/*
+let contact = {
+        firstName: prenom,
+        lastName: nom,
+        address: adresse,
+        email: email,
+        city: ville,
+    };
 
 
-//Elément parent de panier.html
-//const $order = document.querySelector('#order');
+const postOrderId = async function (order) {
+    
+        try {
+            let response = await fetch('http://localhost:3000/api/cameras/order)
+            if (response.ok) {
+                return await response.json()
+            } else {
+                console.error('Retour du serveur: ', response.status)
+            }
+        } catch (e) {
+            console.log(e)
+        }   
+       }   
 
-/*document.getElementById("empty-cart").addEventListener('click', function() {
+
+
+
+
+/****************************************************/
+/*Elément parent de panier.html
+const $order = document.querySelector('#order');
+
+document.getElementById("empty-cart").addEventListener('click', function() {
     if( confirm( "Êtes-vous sûr de vouloir vider votre panier ? Vous perdrez toute votre sélection actuelle" )) {
         localStorage.clear();
         location.reload();
