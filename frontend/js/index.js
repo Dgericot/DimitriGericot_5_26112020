@@ -1,4 +1,5 @@
 import {getCameras} from './fetch'
+import {toPrice} from './helpers'
 
 getCameras().then((products) => {
     displayCarousel(products);
@@ -56,7 +57,7 @@ function displayProductsCards(products) {
         <div class="card-body">
         <h5 class="card-title">${product.name}</h5>
         <p class="card-text">${product.description}</p>
-        <p class="card-text">${product.price/100} €</p>
+        <p class="card-text">${toPrice(product.price)}</p>
         <a href="/produits.html?product_id=${product._id}" class="btn btn-info stretched-link rounded-pill">Obtenir plus d'information</a>
         </div>
         </div>
