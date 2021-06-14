@@ -1,31 +1,44 @@
+import {toPrice} from './helpers'
+
 //Récupération des produits via le localStorage
-const $storedCart = JSON.parse(localStorage.getItem("cart"));
+const storedCart = JSON.parse(localStorage.getItem("cart"));
 
-let cart = ["product.name", "product.price", "product.quatity", "product.totalPrice"];
 
-$storedCart(cart).then ((product) => {
-    displayOrder(product);
-    displayForm(order);
+displayOrder(storedCart);
+displayForm();
 
-})
 
-function displayOrder (product) {
-    const main = document.querySelector('main .container');
 
+function displayOrder (cart) {
+    const main = document.querySelector('main .container-order');
+
+    const productsRows = cart.products.map(product => {
+        return `
+        <tr>
+            <td>${product.name}</td>
+            <td>${toPrice(product.price)}</td>
+            <td>1</td>
+            <td>${toPrice(product.price)}</td>
+        </tr>
+
+        `
+    })
     const render = `
     <div class="col">
     <h2 class="mb-2 mt-4 font-weight-normal text-lg-right"><i class="fas fa-shopping-basket mr-3"></i> Finaliser ma commande</h2>
     <table class="table text-center align-middle mt-5">
     
     <thead class="bg-light text-primary">
-     <tr>
-     <th class="text-md-right">Produit${product.name}</th>
-    <th class="d-none d-md-table-cell"></th>
-    <th class="d-none d-md-table-cell">Prix unitaire${product.price}</th>
-    <th>Quantité${product.quantity}</th>
-    <th>Prix total${product.totalPrice}</th>
-    </tr>
+        <tr>
+            <th class="text-md-right">Produit</th>
+            <th class="d-none d-md-table-cell">Prix unitaire</th>
+            <th>Quantité</th>
+            <th>Prix total</th>
+        </tr>
     </thead>
+    <tbody>
+        ${productsRows.join('')}
+    </tbody>
     </table>
     </div>
     
@@ -35,7 +48,7 @@ function displayOrder (product) {
     <div class="col-12 col-sm-6">
     <p class="text-right ml-auto bg-light">
     <span class="text-primary font-weight-bold">TOTAL DU PANIER :</span>
-    <span id="total-cart" class="font-weight-bold text-primary mr-3 mr-lg-5"></span>
+    <span id="total-cart" class="font-weight-bold text-primary mr-3 mr-lg-5">${toPrice(cart.price)}</span>
     </p>
     <p class="text-right ml-auto">
     <span class="text-primary">TVA incluse </span>
@@ -52,8 +65,8 @@ function displayOrder (product) {
         }
 
     
-function displayForm(order) {
-    const section = document.querySelector('section .container');
+function displayForm() {
+    const section = document.querySelector('section .container-form');
 
     const affichage = `
 
@@ -115,7 +128,7 @@ function displayForm(order) {
     
     `;
 
-    section.innerHTML ='${affichage}'; 
+    section.innerHTML =`${affichage}`; 
 
 }
 
