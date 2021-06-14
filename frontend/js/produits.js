@@ -1,4 +1,5 @@
 import { getCameraById } from "./fetch";
+import {toPrice} from './helpers'
 
 let params = new URLSearchParams(document.location.search);
 let productId = params.get("product_id");
@@ -12,7 +13,7 @@ getCameraById(productId).then((product) => {
 
   const selectedProduct = {
     ...product,
-    lenses: null,
+    lenses: product.lenses[0],
   }
 
   $selectedLenses.addEventListener("change", (e) => {
@@ -48,7 +49,7 @@ function displayProductInPage(product) {
         <div class="card-body">
         <h5 class="card-title">${product.name}</h5>
         <p class="card-text">${product.description}</p>
-        <p class="card-text">${product.price / 100} €</p>
+        <p class="card-text">${toPrice(product.price)}</p>
         </div>
         </div>
         </div>
