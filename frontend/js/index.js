@@ -23,7 +23,7 @@ function displayCarousel(products) {
     `<div class="row mb-4">
     <div class="col">
     <div class="jumbotron text-lg-center shadow">
-    <h2 class="mb-4 font-weight-light decouvrir">Découvrez nos caméras vintage d'exception!</h2>
+    <h2 class="mb-4 font-italic decouvrir">Découvrez nos caméras vintage d'exception!</h2>
             
     <div id="carouselControls" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner rounded-circle">
