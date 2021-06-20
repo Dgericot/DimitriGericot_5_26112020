@@ -1,3 +1,4 @@
+
 export const getCameras = async function () {
     try {
         let response = await fetch('http://localhost:3000/api/cameras')
@@ -28,9 +29,30 @@ export const getCameras = async function () {
     }   
    }   
 
-    export function sendOrder(jsonObject, clientInfos) {
+
+   export function sendOrder(jsonObject, clientInfos) {
+    
+        fetch("http://localhost:3000/api/cameras/order", {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(jsonObject),
+        })
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error("Problème survenu lors de l'envoi des données");
+            })
+        
+
+    }
+
+ /*   export function sendOrder(jsonObject, clientInfos) {
     if (cartEmpty()) {
-        window.alert("Votre panier est vide");
+        window.alert("Votre panier est vide, veuillez selectionner un produit");
     } else {
         fetch("http://localhost:3000/api/cameras/order", {
             method: "POST",
@@ -48,6 +70,6 @@ export const getCameras = async function () {
             })
         }
 
-    }
+    }*/
 
    

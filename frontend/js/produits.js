@@ -91,7 +91,9 @@ function addToCart(product) {
     };
   } else {
     cart = JSON.parse(storedCart);
-    cart.products.push(product);
+    if (!cart.products.find(item => item._id === product._id) ) {
+        cart.products.push(product);
+    }
     cart.price += product.price;
   }
   localStorage.setItem("cart", JSON.stringify(cart));
