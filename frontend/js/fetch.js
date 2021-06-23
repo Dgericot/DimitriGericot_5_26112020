@@ -1,5 +1,4 @@
-
-export const getCameras = async function () {
+export const getCameras = async function() {
     try {
         let response = await fetch('http://localhost:3000/api/cameras')
         if (response.ok) {
@@ -9,16 +8,16 @@ export const getCameras = async function () {
         }
     } catch (e) {
         console.log(e)
-    }   
-   }
-
- 
+    }
+}
 
 
 
-   export const getCameraById = async function (id) {
+
+
+export const getCameraById = async function(id) {
     try {
-        let response = await fetch('http://localhost:3000/api/cameras/' +id)
+        let response = await fetch('http://localhost:3000/api/cameras/' + id)
         if (response.ok) {
             return await response.json()
         } else {
@@ -26,11 +25,38 @@ export const getCameras = async function () {
         }
     } catch (e) {
         console.log(e)
-    }   
-   }   
+    }
+}
 
 
-   export function sendOrder(jsonObject, clientInfos) {
+/*export function sendOrder(jsonObject, contact) {
+    const main = document.querySelector('main .container');
+    fetch("http://localhost:3000/api/cameras/order", {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(jsonObject),
+        })
+        .then((response) => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error("Problème survenu lors de l'envoi des données");
+        })
+        .then((data) => {
+            window.location.href = "order-validation.html";
+            main.innerHTML = `<p class="text-center id-confirmation">Votre numéro de commande:${data}</p>`
+        })
+        .catch((error) => {
+            console.log(error.message);
+        });
+
+}
+
+ 
+export function sendOrder(jsonObject, clientInfos) {
     
         fetch("http://localhost:3000/api/cameras/order", {
             method: "POST",
@@ -47,29 +73,5 @@ export const getCameras = async function () {
                 throw new Error("Problème survenu lors de l'envoi des données");
             })
         
-
     }
-
- /*   export function sendOrder(jsonObject, clientInfos) {
-    if (cartEmpty()) {
-        window.alert("Votre panier est vide, veuillez selectionner un produit");
-    } else {
-        fetch("http://localhost:3000/api/cameras/order", {
-            method: "POST",
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(jsonObject),
-        })
-            .then((response) => {
-                if (response.ok) {
-                    return response.json();
-                }
-                throw new Error("Problème survenu lors de l'envoi des données");
-            })
-        }
-
-    }*/
-
-   
+    */

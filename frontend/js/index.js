@@ -1,5 +1,5 @@
-import {getCameras} from './fetch'
-import {toPrice} from './helpers'
+import { getCameras } from './fetch'
+import { toPrice } from './helpers'
 
 getCameras().then((products) => {
     displayCarousel(products);
@@ -9,18 +9,18 @@ getCameras().then((products) => {
 
 function displayCarousel(products) {
     const container = document.querySelector('.container-1');
-    const result =[]
-    
+    const result = []
+
     products.forEach((product, index) => {
-        const render =`
+        const render = `
     <div class="carousel-item ${index == 0 ? 'active' : ''}">
     <img src="${product.imageUrl}" class="d-block w-100" alt="Caméra Zurss 50S">
     </div>
     `;
         result.push(render);
     });
-    container.innerHTML = 
-    `<div class="row mb-4">
+    container.innerHTML =
+        `<div class="row mb-4">
     <div class="col">
     <div class="jumbotron text-lg-center shadow">
     <h2 class="mb-4 decouvrir">Découvrez nos caméras vintage d'exception!</h2>
@@ -41,13 +41,13 @@ function displayCarousel(products) {
     </div>
     </div>
     </div>
-    `      
+    `
 }
 
 function displayProductsCards(products) {
     const main = document.querySelector('.container-2');
-    const affichage =[]
-    
+    const affichage = []
+
     products.forEach((product) => {
         const render = `
         <div class="col-12 col-lg-6 text-center">
@@ -63,20 +63,7 @@ function displayProductsCards(products) {
         </div>
         </div>
     `;
-            affichage.push(render);
+        affichage.push(render);
     })
-    main.innerHTML =`<div class="row">${affichage.join('')}</div>`; 
+    main.innerHTML = `<div class="row">${affichage.join('')}</div>`;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
