@@ -1,26 +1,28 @@
 {
-  "name": "orinoco-frontend",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start": "parcel index.html ./*.html"
-  },
-  "keywords": [],
-  "author": "Dimitri",
-  "license": "ISC",
-  "dependencies": {
-    "bootstrap": "^5.0.1"
-  },
-  "devDependencies": {
-    "parcel-bundler": "^1.12.5",
-    "sass": "^1.32.13"
-  },
-  "browserslist": [
-    "last 2 and_chr versions",
-    "last 2 chrome versions",
-    "last 2 opera versions",
-    "last 2 ios_saf versions",
-    "last 2 safari versions"
-  ]
+    "name": "orinoco-frontend",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "parcel index.html ./*.html"
+    },
+    "keywords": [],
+    "author": "Dimitri",
+    "license": "ISC",
+    "dependencies": {
+        "bootstrap": "^5.0.1",
+        "parcel-plugin-asset-copier": "^1.1.0"
+    },
+    "devDependencies": {
+        "parcel-bundler": "^1.12.5",
+        "sass": "^1.32.13"
+    },
+    "assetsPath": "img",
+    "browserslist": [
+        "last 2 and_chr versions",
+        "last 2 chrome versions",
+        "last 2 opera versions",
+        "last 2 ios_saf versions",
+        "last 2 safari versions"
+    ]
 }
