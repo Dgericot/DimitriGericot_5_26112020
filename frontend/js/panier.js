@@ -13,7 +13,8 @@ function displayOrder(cart) {
 
     //si pas de cart, n'exécute pas la suite    
     if (!cart) {
-        main.innerHTML = `<h2 class ="text-center mt-4 text-danger"> Votre panier est vide, veuillez selectionner un produit afin de poursuivre</h2><img src="./img/empty-cart.svg" class="d-block w-50 mt-4" alt="Votre panier est vide">`
+        main.innerHTML = `<h2 class ="text-center mt-4 text-danger"> Votre panier est vide, veuillez selectionner un produit afin de poursuivre</h2>
+        <img src="/empty-cart.svg" class="d-block w-75 mt-4 ml-5" alt="Votre panier est vide">`
         return;
     }
 
@@ -104,7 +105,7 @@ function displayForm() {
 
     const affichage = `
 
-    <form class="row" form-method="post" name="contact-form" id="contact-form">
+    <form class="row" name="contact-form" id="contact-form">
     <div class="col-12 col-md-6 text-primary ml-auto font-weight-bold was-validated">
     <h3 class="my-3 my-md-5 h6">Veuillez renseigner les informations suivantes pour l'envoi et la facturation de votre commande</h3>
     
@@ -154,89 +155,86 @@ function displayForm() {
                 
     </div>
     <p id="error" class="h5 text-danger"></p>
-    <input type="submit" id="order-button" class="btn btn-success text-white font-weight-bold ml-5 my-5 px-3" value="Valider la commande">
+    <input type="submit" id="order-button" class="test btn btn-success text-white font-weight-bold ml-5 my-5 px-3" value="Valider la commande">
     </form> 
     `;
 
     section.innerHTML = `<div class="col-12">${affichage}</div>`;
 }
+var regexLastNameFirstNameAndCity = /^[A-Za-z\é\è\ê\-\']+$/;
+var regexEmail = /(^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$)/;
+var regexAddress = /^[A-Za-z0-9\é\è\ê\s]{5,50}$/;
+var regexPostal = /[0-9]{4,5}/;
 
-//contrôle du formulaire
-document.getElementById("order-button").addEventListener('submit', function(event) {
-    //const storedCart = JSON.parse(localStorage.getItem("cart"));
-    const cart = JSON.parse(storedCart)
-    var regexLastNameFirstNameAndCity = /^[A-Z][A-Za-z\é\è\ê\-\']+$/;
-    var regexEmail = /(^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$)/;
-    var regexAddress = /[0-9]{1,3}[ ][A-Za-z0-9À-ž' -]{5,}/;
-    var regexPostal = /^((0[1-9])|([1-8][0-9])|(9[0-8])|(2A)|(2B))[0-9]{3}$/;
-    var regex_ok = true;
-
-    function isValid(element, regex) {
-        if (regex.test(document.forms["contact-form"][element].value) == true) {
-            document.getElementById("order-button").disabled = false;
-            document.getElementById("error").innerHTML = "";
-        } else {
-            document.getElementById("order-button").disabled = true;
-            document.getElementById("error").innerHTML = `<div class="col-12">"Les champs ne sont pas complétés"</div>`;
-        };
+function isValid(element, regex) {
+    if (regex.test(document.forms["contact-form"][element].value) == true) {
+        console.log(element + 'est valide')
+        document.getElementById("order-button").removeAttribute('disabled');
+        document.getElementById("error").innerHTML = "";
+    } else {
+        console.log(element + 'est invalide')
+        document.getElementById("order-button").setAttribute('disabled', 'disabled');
+        document.getElementById("error").innerHTML = `<div class="col-12">"Les champs ne sont pas correctement complétés"</div>`;
     };
-    //Vérification des champs du formulaire
-    document.getElementById("lastName").addEventListener('input', function() {
-        isValid("lastName", regexLastNameFirstNameAndCity);
-    })
-    document.getElementById("firstName").addEventListener('input', function() {
-        isValid("firstName", regexLastNameFirstNameAndCity);
-    })
-    document.getElementById("email").addEventListener('input', function() {
-        isValid("email", regexEmail);
-    })
-    document.getElementById("address").addEventListener('input', function() {
-        isValid("address", regexAddress);
-    })
-    document.getElementById("city").addEventListener('input', function() {
-        isValid("city", regexLastNameFirstNameAndCity);
-    })
-    document.getElementById("postal").addEventListener('input', function() {
+};
+
+//Vérification des champs du formulaire
+document.getElementById("lastName").addEventListener('input', function() {
+    isValid("lastName", regexLastNameFirstNameAndCity);
+})
+document.getElementById("firstName").addEventListener('input', function() {
+    isValid("firstName", regexLastNameFirstNameAndCity);
+})
+document.getElementById("email").addEventListener('input', function() {
+    isValid("email", regexEmail);
+})
+document.getElementById("address").addEventListener('input', function() {
+    isValid("address", regexAddress);
+})
+document.getElementById("city").addEventListener('input', function() {
+    isValid("city", regexLastNameFirstNameAndCity);
+})
+document.getElementById("postal").addEventListener('input', function() {
         isValid("postal", regexPostal);
     })
+    //contrôle du formulaire
+document.getElementById("contact-form").addEventListener('submit', function(event) {
+    event.preventDefault();
+    //const storedCart = JSON.parse(localStorage.getItem("cart"));
+    //Crée un clone de storedCart    
+    const cart = {...storedCart };
 
-    if (regex_ok) {
 
-        event.preventDefault();
-
-        const order = {
-            contact: {
-                firstName: document.forms['contact-form']['firstName'].value,
-                lastName: document.forms['contact-form']['lastName'].value,
-                address: document.forms['contact-form']['address'].value,
-                city: document.forms['contact-form']['city'].value,
-                email: document.forms['contact-form']['email'].value,
-            },
-            products: []
-        }
-        cart.products.forEach(element => {
-            order.products.push(element.product._id)
-        });
-
-        fetch("http://localhost:3000/api/cameras/order", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(order)
-            }).then((response) => {
-                if (response.ok) {
-                    return response.json();
-                }
-                throw new Error("Problème survenu lors de l'envoi des données");
-            })
-            .then((data) => {
-                const main = document.querySelector('order-valide .container');
-                window.location.href = "order-validation.html";
-                main.innerHTML = `<p class="text-center id-confirmation">Votre numéro de commande:${data}</p>`
-            })
-            .catch((error) => {
-                console.log(error.message);
-            });
-
+    const order = {
+        contact: {
+            firstName: document.forms['contact-form']['firstName'].value,
+            lastName: document.forms['contact-form']['lastName'].value,
+            address: document.forms['contact-form']['address'].value,
+            city: document.forms['contact-form']['city'].value,
+            email: document.forms['contact-form']['email'].value,
+        },
+        products: []
     }
+    cart.products.forEach(product => {
+        order.products.push(product._id)
+    });
+
+    fetch("http://localhost:3000/api/cameras/order", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(order)
+        }).then((response) => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error("Problème survenu lors de l'envoi des données");
+        })
+        .then((data) => {
+            localStorage.setItem("orderId", JSON.stringify({ id: data.orderId }));
+            window.location.href = "order-validation.html";
+        })
+        .catch((error) => {
+            console.log(error.message);
+        });
 
 })
