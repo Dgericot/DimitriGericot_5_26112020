@@ -93,8 +93,9 @@ function addToCart(product) {
         cart = JSON.parse(storedCart);
         if (!cart.products.find(item => item._id === product._id)) {
             cart.products.push(product);
+            cart.price += product.price;
         }
-        cart.price += product.price;
+
     }
     localStorage.setItem("cart", JSON.stringify(cart));
 }
