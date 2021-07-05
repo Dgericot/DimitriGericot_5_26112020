@@ -1,5 +1,5 @@
 import { toPrice } from './helpers'
-//import { sendOrder } from './fetch'
+import { sendOrder } from './fetch'
 
 //Récupération des produits via le localStorage
 const storedCart = JSON.parse(localStorage.getItem("cart"));
@@ -12,9 +12,9 @@ function displayOrder(cart) {
     const main = document.querySelector('main .container-order');
 
     //si pas de cart, n'exécute pas la suite    
-    if (!cart) {
-        main.innerHTML = `<h2 class ="text-center mt-4 text-danger"> Votre panier est vide, veuillez selectionner un produit afin de poursuivre</h2>
-        <img src="/empty-cart.svg" class="d-block w-75 mt-4 ml-5" alt="Votre panier est vide">`
+    if (!cart || cart.products.length === 0) {
+        main.innerHTML = `<div class= "col-12 text-center"> <h2 class ="text-cart-empty mt-5 text-danger"> Votre panier est vide, veuillez selectionner un produit afin de poursuivre</h2>
+        <img src="/empty-cart.svg" class=" w-50 mt-4 ml-2" alt="Votre panier est vide"></div>`
         return;
     }
 
@@ -30,8 +30,8 @@ function displayOrder(cart) {
         `
     })
     const render = `
-    <div class="col-12 ">
-    <h2 class="mb-2 mt-4 ml-2 font-italic text-left text-info"><i class="fas fa-shopping-basket mr-3"></i> Finaliser ma commande</h2>
+    <div class="col-12">
+    <h2 class="mb-2 mt-4 font-italic text-center bg-light text-primary"><i class="fas fa-shopping-basket mr-3 text-info"></i> Finaliser ma commande</h2>
     <table class="table text-center align-middle mt-5">
     
     <thead class="bg-light text-primary">
@@ -91,12 +91,15 @@ Array.from(document.querySelectorAll('.suppress-line')).forEach(button => {
 })
 
 //Vider le panier totalement
-document.getElementById("empty-cart").addEventListener('click', () => {
-    if (confirm("Êtes-vous sûr de vouloir vider votre panier ? \n\nVous perdrez toute votre sélection actuelle")) {
-        localStorage.clear();
-        window.location.href = "index.html";
-    }
-});
+const emptyCartButton = document.getElementById("empty-cart");
+if (emptyCartButton) {
+    emptyCartButton.addEventListener('click', () => {
+        if (confirm("Êtes-vous sûr de vouloir vider votre panier ? \n\nVous perdrez toute votre sélection actuelle")) {
+            localStorage.clear();
+            window.location.href = "index.html";
+        }
+    });
+}
 
 
 
@@ -105,57 +108,50 @@ function displayForm() {
 
     const affichage = `
 
-    <form class="row" name="contact-form" id="contact-form">
-    <div class="col-12 col-md-6 text-primary ml-auto font-weight-bold was-validated">
+    <form class="col-8" name="contact-form" id="contact-form">
+    <div class="col-12 text-primary ml-auto font-weight-bold was-validated">
     <h3 class="my-3 my-md-5 h6">Veuillez renseigner les informations suivantes pour l'envoi et la facturation de votre commande</h3>
     
     <div class="form-group">
-    <label for="last-name">Nom : </label>
-    <input type="text" class="form-control border-secondary" name="lastName" id="lastName" placeholder="Nom de famille" required>  
+    
+    <div class="formData" data-error="Ce champ est incomplet" 
+    <label for="last-name">Nom : </label> <input type="text" class="form-control border-secondary"  name="lastName" id="lastName" placeholder="Nom de famille" required></div> 
     </div>
     
     <div class="form-group">
-    <label for="first-name">Prénom :</label>
-    <input type="text"  class="form-control border-secondary" name="firstName" id="firstName" placeholder="Prénom(s)" required>
+    
+    <div class="formData" data-error="Ce champ est incomplet" 
+    <label for="first-name">Prénom :</label> <input type="text"  class="form-control border-secondary" name="firstName" id="firstName" placeholder="Prénom(s)" required></div>
     </div>
     
     <div class="form-group">
-    <label for="email">Email :</label>
-    <input type="text" class="form-control border-secondary"   name="email" id="email"  placeholder="exemple@mail.com" required>
+    
+    <div class="formData" data-error="Ce champ est incomplet" 
+    <label for="email">Email :</label> <input type="text" class="form-control border-secondary"   name="email" id="email"  placeholder="exemple@mail.com" required></div>
     </div>
     
     <div class="form-group">
-    <label for="address">Adresse :</label>
-    <input type="text" class="form-control border-secondary"  name="address" id="address"   placeholder="Ex: 30 avenue de..." required>
+    
+    <div class="formData" data-error="Ce champ est incomplet" 
+    <label for="address">Adresse :</label> <input type="text" class="form-control border-secondary"  name="address" id="address"   placeholder="Ex: 30 avenue de..." required></div>
     </div>
     
     <div class="form-group">
-    <label for="city">Ville :</label>
-    <input type="text"  class="form-control border-secondary" name="city" id="city" placeholder="Ville de résidence" required>
+    
+    <div class="formData" data-error="Ce champ est incomplet" 
+    <label for="city">Ville :</label> <input type="text"  class="form-control border-secondary" name="city" id="city" placeholder="Ville de résidence" required></div>
     </div>
     
     <div class="form-group">
-    <label for="postal">Code postal :</label>
-    <input type="text"  class="form-control border-secondary" id="postal" placeholder="Ex: 33000" required>
+    
+    <div class="formData" data-error="Ce champ est incomplet" 
+    <label for="postal">Code postal :</label> <input type="text"  class="form-control border-secondary" id="postal" placeholder="Ex: 33000" required></div>
     </div>
     </div>
     
-    <div class="col-12 col-md-5 text-primary font-weight-bold ml-auto">
-    <h3 class="my-3 my-md-5 h6">Modalités de paiement</h3>
     
-    <div class="form-check h5">
-    <input type="radio" id="paypal" class="form-check-input" name="radio" value="optionPaypal">
-    <label for="paypal" class="form-check-label"> <i class="fab fa-paypal mx-3"></i> PayPal </label>
-    </div>
-    
-    <div class="form-check h5 my-3">
-    <input type="radio" id="bank" class="form-check-input" name="radio" value="optionCarte">
-    <label for="bank" class="form-check-label"> <i class="fab fa-cc-visa ml-3"></i> <i class="fab fa-cc-mastercard mx-1"></i>  Carte bancaire </label>
-    </div>
-                
-    </div>
     <p id="error" class="h5 text-danger"></p>
-    <input type="submit" id="order-button" class="test btn btn-success text-white font-weight-bold ml-5 my-5 px-3" value="Valider la commande">
+    <input type="submit" id="order-button" class="bouton-order btn btn-success text-white font-weight-bold ml-2 my-5 px-3" value="Valider la commande">
     </form> 
     `;
 
@@ -170,71 +166,63 @@ function isValid(element, regex) {
     if (regex.test(document.forms["contact-form"][element].value) == true) {
         console.log(element + 'est valide')
         document.getElementById("order-button").removeAttribute('disabled');
-        document.getElementById("error").innerHTML = "";
+        document.forms["contact-form"][element].parentElement.removeAttribute('data-error');
+
     } else {
         console.log(element + 'est invalide')
         document.getElementById("order-button").setAttribute('disabled', 'disabled');
-        document.getElementById("error").innerHTML = `<div class="col-12">"Les champs ne sont pas correctement complétés"</div>`;
+        document.forms["contact-form"][element].parentElement.setAttribute('data-error', 'La saisie est incorrect');
     };
 };
 
-//Vérification des champs du formulaire
-document.getElementById("lastName").addEventListener('input', function() {
-    isValid("lastName", regexLastNameFirstNameAndCity);
-})
-document.getElementById("firstName").addEventListener('input', function() {
-    isValid("firstName", regexLastNameFirstNameAndCity);
-})
-document.getElementById("email").addEventListener('input', function() {
-    isValid("email", regexEmail);
-})
-document.getElementById("address").addEventListener('input', function() {
-    isValid("address", regexAddress);
-})
-document.getElementById("city").addEventListener('input', function() {
-    isValid("city", regexLastNameFirstNameAndCity);
-})
-document.getElementById("postal").addEventListener('input', function() {
-        isValid("postal", regexPostal);
+const form = document.getElementById("contact-form");
+
+if (form) {
+    //Vérification des champs du formulaire
+    document.getElementById("lastName").addEventListener('input', function() {
+        isValid("lastName", regexLastNameFirstNameAndCity);
     })
-    //contrôle du formulaire
-document.getElementById("contact-form").addEventListener('submit', function(event) {
-    event.preventDefault();
-    //const storedCart = JSON.parse(localStorage.getItem("cart"));
-    //Crée un clone de storedCart    
-    const cart = {...storedCart };
-
-
-    const order = {
-        contact: {
-            firstName: document.forms['contact-form']['firstName'].value,
-            lastName: document.forms['contact-form']['lastName'].value,
-            address: document.forms['contact-form']['address'].value,
-            city: document.forms['contact-form']['city'].value,
-            email: document.forms['contact-form']['email'].value,
-        },
-        products: []
-    }
-    cart.products.forEach(product => {
-        order.products.push(product._id)
-    });
-
-    fetch("http://localhost:3000/api/cameras/order", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(order)
-        }).then((response) => {
-            if (response.ok) {
-                return response.json();
-            }
-            throw new Error("Problème survenu lors de l'envoi des données");
+    document.getElementById("firstName").addEventListener('input', function() {
+        isValid("firstName", regexLastNameFirstNameAndCity);
+    })
+    document.getElementById("email").addEventListener('input', function() {
+        isValid("email", regexEmail);
+    })
+    document.getElementById("address").addEventListener('input', function() {
+        isValid("address", regexAddress);
+    })
+    document.getElementById("city").addEventListener('input', function() {
+        isValid("city", regexLastNameFirstNameAndCity);
+    })
+    document.getElementById("postal").addEventListener('input', function() {
+            isValid("postal", regexPostal);
         })
-        .then((data) => {
-            localStorage.setItem("orderId", JSON.stringify({ id: data.orderId }));
-            window.location.href = "order-validation.html";
-        })
-        .catch((error) => {
-            console.log(error.message);
+        //contrôle du formulaire
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        //Crée un clone de storedCart    
+        const cart = {...storedCart };
+
+        const order = {
+            contact: {
+                firstName: document.forms['contact-form']['firstName'].value,
+                lastName: document.forms['contact-form']['lastName'].value,
+                address: document.forms['contact-form']['address'].value,
+                city: document.forms['contact-form']['city'].value,
+                email: document.forms['contact-form']['email'].value,
+            },
+            products: []
+        }
+        cart.products.forEach(product => {
+            order.products.push(product._id)
         });
 
-})
+
+        sendOrder(order).then((data) => {
+            localStorage.setItem("orderId", JSON.stringify(data));
+            localStorage.setItem("cartTotalPrice", JSON.parse(cart.price));
+            window.location.href = "order-validation.html"
+        })
+
+    })
+}
