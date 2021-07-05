@@ -14,7 +14,9 @@ function displayCarousel(products) {
     products.forEach((product, index) => {
         const render = `
     <div class="carousel-item ${index == 0 ? 'active' : ''}">
-    <img src="${product.imageUrl}" class="d-block w-100" alt="Caméra Zurss 50S">
+        <div style="width: 100%; height: 600px">
+            <img src="${product.imageUrl}" style="object-fit:cover; width:100%; height: 100%;" class="d-block w-100" alt="Caméras vintage">
+        </div>
     </div>
     `;
         result.push(render);
