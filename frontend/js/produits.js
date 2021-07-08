@@ -7,19 +7,24 @@ let productId = params.get("product_id");
 getCameraById(productId).then((product) => {
     displayProductInPage(product)
 
+    //Bouton d'ajout au panier
     const $addToCartButton = document.querySelector(".add-to-cart");
 
+    //Volet déroulant pour sélection de lentille
     const $selectedLenses = document.querySelector(".lenses-options");
 
+    //Afin d'éviter que la première valeur du volet déroulant soit considérer comme null
     const selectedProduct = {
         ...product,
         lenses: product.lenses[0],
     }
 
+    //Pour prendre en compte le choix de lentille
     $selectedLenses.addEventListener("change", (e) => {
         selectedProduct.lenses = e.target.value
     })
 
+    //Ajoute le produit au panier et redirige vers la page panier ou retour vers la page produits
     $addToCartButton.addEventListener("click", () => {
         addToCart(selectedProduct);
         if (
@@ -34,6 +39,7 @@ getCameraById(productId).then((product) => {
     });
 });
 
+//Affiche la carte du produit sélectionné avec le choix de lentille et le bouton d'ajout au panier
 function displayProductInPage(product) {
     const main = document.querySelector("main .container");
 
@@ -80,6 +86,7 @@ function displayProductInPage(product) {
     main.innerHTML = `<div class="row">${render}</div>`;
 }
 
+//Ajoute le ou les produits au localStorage dans l'objet cart - empêche d'ajouter au panier 2 fois le même produit
 function addToCart(product) {
     const storedCart = localStorage.getItem("cart");
     let cart;

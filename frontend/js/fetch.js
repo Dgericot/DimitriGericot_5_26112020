@@ -1,3 +1,4 @@
+//Récupère les infos des produits pour affichage du carousel et des cartes sur index.html
 export const getCameras = async function() {
     try {
         let response = await fetch('http://localhost:3000/api/cameras')
@@ -11,7 +12,7 @@ export const getCameras = async function() {
     }
 }
 
-
+//Récupère l'Id du produit sélectionné pour affichage sur la page produits
 export const getCameraById = async function(id) {
     try {
         let response = await fetch('http://localhost:3000/api/cameras/' + id)
@@ -25,7 +26,8 @@ export const getCameraById = async function(id) {
     }
 }
 
-export const sendOrder = async function(order) {
+//Envoi l'order avec les infos de l'utilisateur et le tableau de produits afin de récupérer l'id de commande
+export const sendOrder = function(order) {
 
     fetch("http://localhost:3000/api/cameras/order", {
             method: "POST",
@@ -33,6 +35,7 @@ export const sendOrder = async function(order) {
             body: JSON.stringify(order)
         }).then((response) => {
             if (response.ok) {
+
                 return response.json();
             }
             throw new Error("Problème survenu lors de l'envoi des données");

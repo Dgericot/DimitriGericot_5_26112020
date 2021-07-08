@@ -2,11 +2,11 @@ import { getCameras } from './fetch'
 import { toPrice } from './helpers'
 
 getCameras().then((products) => {
-    displayCarousel(products);
-    displayProductsCards(products);
+        displayCarousel(products);
+        displayProductsCards(products);
 
-})
-
+    })
+    //Affichage du carousel sur la page d'accueil
 function displayCarousel(products) {
     const container = document.querySelector('.container-1');
     const result = []
@@ -45,7 +45,7 @@ function displayCarousel(products) {
     </div>
     `
 }
-
+//Affichage des cartes produits en dessous du carousel
 function displayProductsCards(products) {
     const main = document.querySelector('.container-2');
     const affichage = []

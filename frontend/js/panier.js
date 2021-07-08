@@ -1,5 +1,5 @@
 import { toPrice } from './helpers'
-import { sendOrder } from './fetch'
+//import { sendOrder } from './fetch'
 
 //Récupération des produits via le localStorage
 const storedCart = JSON.parse(localStorage.getItem("cart"));
@@ -7,11 +7,11 @@ const storedCart = JSON.parse(localStorage.getItem("cart"));
 
 displayOrder(storedCart);
 
-
+//Affichage des produits présents dans le localStorage au sein du tableau
 function displayOrder(cart) {
     const main = document.querySelector('main .container-order');
 
-    //si pas de cart, n'exécute pas la suite    
+    //si pas de cart, n'exécute pas la suite de la fonction   
     if (!cart || cart.products.length === 0) {
         main.innerHTML = `<div class= "col-12 text-center"> <h2 class ="text-cart-empty mt-5 text-danger"> Votre panier est vide, veuillez selectionner un produit afin de poursuivre</h2>
         <img src="/empty-cart.svg" class=" w-50 mt-4 ml-2" alt="Votre panier est vide"></div>`
@@ -73,7 +73,7 @@ function displayOrder(cart) {
     displayForm();
 }
 
-//Retirer un article du panier
+//Retirer un article du panier via son id
 Array.from(document.querySelectorAll('.suppress-line')).forEach(button => {
     const productId = button.getAttribute('data-product-id')
     const storedCart = localStorage.getItem("cart");
@@ -90,7 +90,7 @@ Array.from(document.querySelectorAll('.suppress-line')).forEach(button => {
     })
 })
 
-//Vider le panier totalement
+//Vider le panier totalement et retour vers page d'accueil
 const emptyCartButton = document.getElementById("empty-cart");
 if (emptyCartButton) {
     emptyCartButton.addEventListener('click', () => {
@@ -101,8 +101,7 @@ if (emptyCartButton) {
     });
 }
 
-
-
+//Affichage du formulaire pour finalisation de commande
 function displayForm() {
     const section = document.querySelector('section .container-form');
 
@@ -157,11 +156,14 @@ function displayForm() {
 
     section.innerHTML = `<div class="col-12">${affichage}</div>`;
 }
+
+//Regex permettant de contrôler la saisie de l'utilisateur
 var regexLastNameFirstNameAndCity = /^[A-Za-z\é\è\ê\-\']+$/;
 var regexEmail = /(^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$)/;
 var regexAddress = /^[A-Za-z0-9\é\è\ê\s]{5,50}$/;
 var regexPostal = /[0-9]{4,5}/;
 
+//Permettant de vérifier que chacun des champs du formulaire est conforme aux regex
 function isValid(element, regex) {
     if (regex.test(document.forms["contact-form"][element].value) == true) {
         console.log(element + 'est valide')
@@ -178,7 +180,8 @@ function isValid(element, regex) {
 const form = document.getElementById("contact-form");
 
 if (form) {
-    //Vérification des champs du formulaire
+
+    //Vérification des champs du formulaire par le biais de la fonction isValid
     document.getElementById("lastName").addEventListener('input', function() {
         isValid("lastName", regexLastNameFirstNameAndCity);
     })
@@ -197,12 +200,14 @@ if (form) {
     document.getElementById("postal").addEventListener('input', function() {
             isValid("postal", regexPostal);
         })
-        //contrôle du formulaire
+        //Soumission du formulaire
     form.addEventListener('submit', function(event) {
         event.preventDefault();
-        //Crée un clone de storedCart    
+
+        //Crée un clone de storedCart
         const cart = {...storedCart };
 
+        //Order qui sera envoyé au serveur pour obtention de l'id de commande
         const order = {
             contact: {
                 firstName: document.forms['contact-form']['firstName'].value,
@@ -216,13 +221,36 @@ if (form) {
         cart.products.forEach(product => {
             order.products.push(product._id)
         });
+        //Envoi l'order à l'API et conserve l'id de commande et le prix total du panier dans le localStorage
+
+        fetch("http://localhost:3000/api/cameras/order", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(order)
+            }).then((response) => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error("Problème survenu lors de l'envoi des données");
+            })
+            .then((data) => {
+                localStorage.setItem("orderId", JSON.stringify(data.orderId));
+                localStorage.setItem("cartTotalPrice", JSON.parse(cart.price));
+                window.location.href = "order-validation.html";
+            })
+            .catch((error) => {
+                console.log(error.message);
+            });
+
+        //Envoi l'order à l'API et conserve l'id et le prix total du panier de commande retourné dans le localStorage
+        /* var data = sendOrder(order);
+         localStorage.setItem("orderId", JSON.stringify(data));
+         localStorage.setItem("cartTotalPrice", JSON.parse(cart.price));
+         window.location.href = "order-validation.html"*/
 
 
-        sendOrder(order).then((data) => {
-            localStorage.setItem("orderId", JSON.stringify(data));
-            localStorage.setItem("cartTotalPrice", JSON.parse(cart.price));
-            window.location.href = "order-validation.html"
-        })
+
+
 
     })
 }
