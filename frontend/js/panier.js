@@ -1,5 +1,5 @@
 import { toPrice } from './helpers'
-//import { sendOrder } from './fetch'
+import { sendOrder } from './fetch'
 
 //Récupération des produits via le localStorage
 const storedCart = JSON.parse(localStorage.getItem("cart"));
@@ -31,7 +31,7 @@ function displayOrder(cart) {
     })
     const render = `
     <div class="col-12">
-    <h2 class="mb-2 mt-4 font-italic text-center bg-light text-primary"><i class="fas fa-shopping-basket mr-3 text-info"></i> Finaliser ma commande</h2>
+    <h2 class="mb-2 mt-4 font-italic text-left bg-light text-primary"><i class="fas fa-shopping-basket mr-3 text-info"></i> Finaliser ma commande</h2>
     <table class="table text-center align-middle mt-5">
     
     <thead class="bg-light text-primary">
@@ -39,7 +39,7 @@ function displayOrder(cart) {
             <th>Retirer article</th>
             <th class="text-md-center">Produit</th>
             <th>Lentille</th>
-            <th class="d-none d-md-table-cell">Prix unitaire</th>
+            <th>Prix unitaire</th>
             <th>Prix total</th>
         </tr>
     </thead>
@@ -165,10 +165,14 @@ var regexPostal = /[0-9]{4,5}/;
 
 //Permettant de vérifier que chacun des champs du formulaire est conforme aux regex
 function isValid(element, regex) {
+    document.forms["contact-form"][element].parentElement.setAttribute('data-show-error', 'true');
+
     if (regex.test(document.forms["contact-form"][element].value) == true) {
         console.log(element + 'est valide')
         document.getElementById("order-button").removeAttribute('disabled');
         document.forms["contact-form"][element].parentElement.removeAttribute('data-error');
+        document.forms["contact-form"][element].parentElement.removeAttribute('data-show-error');
+
 
     } else {
         console.log(element + 'est invalide')
@@ -221,18 +225,9 @@ if (form) {
         cart.products.forEach(product => {
             order.products.push(product._id)
         });
-        //Envoi l'order à l'API et conserve l'id de commande et le prix total du panier dans le localStorage
 
-        fetch("http://localhost:3000/api/cameras/order", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(order)
-            }).then((response) => {
-                if (response.ok) {
-                    return response.json();
-                }
-                throw new Error("Problème survenu lors de l'envoi des données");
-            })
+        //Envoi l'order à l'API et conserve l'id de commande et le prix total du panier dans le localStorage
+        sendOrder(order)
             .then((data) => {
                 localStorage.setItem("orderId", JSON.stringify(data.orderId));
                 localStorage.setItem("cartTotalPrice", JSON.parse(cart.price));
@@ -241,16 +236,6 @@ if (form) {
             .catch((error) => {
                 console.log(error.message);
             });
-
-        //Envoi l'order à l'API et conserve l'id et le prix total du panier de commande retourné dans le localStorage
-        /* var data = sendOrder(order);
-         localStorage.setItem("orderId", JSON.stringify(data));
-         localStorage.setItem("cartTotalPrice", JSON.parse(cart.price));
-         window.location.href = "order-validation.html"*/
-
-
-
-
 
     })
 }
