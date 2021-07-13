@@ -55,4 +55,9 @@
     content: attr(data-error);
     font-size: 1rem;
     color: red;
+    display: none;
+}
+
+.formData[data-show-error]::after {
+    display: block;
 }
