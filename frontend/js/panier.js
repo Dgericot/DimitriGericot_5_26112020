@@ -90,7 +90,7 @@ Array.from(document.querySelectorAll('.suppress-line')).forEach(button => {
     })
 })
 
-//Vider le panier totalement et retour vers page d'accueil
+//Vider le panier totalement et retour vers la page d'accueil
 const emptyCartButton = document.getElementById("empty-cart");
 if (emptyCartButton) {
     emptyCartButton.addEventListener('click', () => {

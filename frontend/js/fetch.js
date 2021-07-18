@@ -14,7 +14,7 @@ export const getCameras = async function() {
     }
 }
 
-//Récupère l'Id du produit sélectionné pour affichage sur la page produits
+//Récupère l'Id du produit sélectionné pour affichage sur la page produits.html
 export const getCameraById = async function(id) {
     try {
         let response = await fetch(apiUrl + '/' + id)

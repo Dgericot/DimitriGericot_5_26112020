@@ -9,7 +9,7 @@ function displayOrderId() {
     let totalOrderAmount = localStorage.getItem("cartTotalPrice")
     const pageConfirmation = `
             
-            <h1 class="text-center">Nous vous remercions d'avoir effectué votre achat chez Orinoco!</h1>
+            <h1 class="text-center">Nous vous remercions d'avoir effectué votre achat chez Oricamera!</h1>
             <p class="text-center">Votre commande à été validée et vous recevrez un email de confirmation dans quelques minutes</p>
             <p class="text-center id-confirmation">Votre numéro de commande est le suivant:${data}</p>
             <p class="text-center id-confirmation">Le montant total de votre commande est de ${toPrice(totalOrderAmount)}</p> 

@@ -13,7 +13,7 @@ getCameraById(productId).then((product) => {
     //Volet déroulant pour sélection de lentille
     const $selectedLenses = document.querySelector(".lenses-options");
 
-    //Afin d'éviter que la première valeur du volet déroulant soit considérer comme null
+    //Afin d'éviter que la première valeur du volet déroulant de selection de lentilles soit considérer comme null
     const selectedProduct = {
         ...product,
         lenses: product.lenses[0],
