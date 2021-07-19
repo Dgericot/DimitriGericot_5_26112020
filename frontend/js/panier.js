@@ -13,7 +13,7 @@ function displayOrder(cart) {
 
     //si pas de cart, n'exécute pas la suite de la fonction   
     if (!cart || cart.products.length === 0) {
-        main.innerHTML = `<div class= "col-12 text-center"> <h2 class ="text-cart-empty mt-5 text-danger"> Votre panier est vide, veuillez selectionner un produit afin de poursuivre</h2>
+        main.innerHTML = `<div class= "col-12 text-center"> <h2 class ="text-cart-empty mt-5 text-danger"> Votre panier est vide, veuillez sélectionner un produit afin de poursuivre</h2>
         <img src="/empty-cart.svg" class=" w-50 mt-4 ml-2" alt="Votre panier est vide"></div>`
         return;
     }
